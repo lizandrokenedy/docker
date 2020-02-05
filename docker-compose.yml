@@ -1,0 +1,55 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      #dockerfile: Dockerfile
+    image: php/mpmt
+    container_name: app2
+    restart: always
+
+    working_dir: /var/www/html
+    volumes:
+      - D:\dev-local\SAT\html\:/var/www/html
+#      - .\html\:/var/www/html
+#      - .\vhosts\:/etc/apache2/sites-available
+#      - .\conf-available\:/etc/apache2/conf-available
+      - .\apache2\:/etc/apache2
+    ports: 
+      - "8081:80"
+#      - "443:443"
+#    networks:
+#      - app-network
+
+
+
+  #MySQL Service
+#  db:
+#    image: mysql:5.7.22
+#    container_name: db
+#    restart: always
+#    tty: true
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      #MYSQL_DATABASE: laravel
+#      MYSQL_ROOT_PASSWORD: 123456
+#      SERVICE_TAGS: dev
+#      SERVICE_NAME: mysql
+#    volumes:
+      #- .\dbdata:/var/lib/mysql/
+      #- .\mysql\my.cnf:/etc/mysql/my.cnf
+      #- .\mysql:/etc/mysql/
+#    networks:
+#      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+#volumes:
+#  dbdata:
+#    driver: local
